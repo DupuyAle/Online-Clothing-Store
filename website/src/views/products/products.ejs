@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <%- include("../partials/head") %>
+
+    <title>Maunganui Tienda</title>
+  </head>
+
+  <body>
+    <!-- Header and NavBar -->
+    <header class="header-container">
+      <%- include("../partials/header") %>
+    </header>
+    <main>
+      <section class="section-title__container">
+        <h2>Todos los productos</h2>
+      </section>
+      <!--  <section class="section-search__container">
+        <form class="search-form__products" action="/search" method="GET">
+          <input
+            type="text"
+            name="keywords"
+            placeholder="Filtro de productos..."
+            class="style-search-form-products"
+          />
+          <button type="submit" class="products-search__button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </section> -->
+      <div class="product-list">
+        <% products.forEach(product=> { %>
+        <div class="product-item">
+          <div class="product-item-image">
+            <a href="/products/details-product/<%= product.id %>">
+              <img
+                src="/images/products/<%= product.image %>"
+                alt="<%= product.name %>"
+              />
+            </a>
+            <a href="/cart">
+              <button class="add-to-cart-btn-icon add-to-cart-btn" data-product-id="<%= product.id %>">
+                  <i class=" fa-solid fa-cart-shopping"></i>
+              </button>
+            </a>
+          </div>
+          <div class="product-info">
+            <p><%= product.name %></p>
+
+            <s>$<%= product.price %></s>
+            <p><%= product.discount %>% OFF</p>
+          <button class="add-to-cart-btn" data-product-id="<%= product.id %>">Agregar al carrito</button>
+
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="footer"><%- include("../partials/footer") %></footer>
+
+    <script src="/js/index.js"></script>
+  </body>
+</html>

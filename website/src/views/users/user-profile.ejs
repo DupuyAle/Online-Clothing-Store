@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include("../partials/head") %>
+        <title>Search Result</title>
+        <script src="/js/userProfileValidation.js"></script>
+</head>
+
+<body>
+    <header class="header-container"><%- include("../partials/header") %></header>
+    <main class="main-container">
+        <div class="breadcrumb">
+            <a href="/">Perfil del usuario: </a> /
+            <span><%= logueado.first_name %></span>
+        </div>
+        <div class="user-info__container">
+            <section class="user-info__leftColumn">
+                <h2>Perfil de : <span><%= logueado.first_name %></span></h2>
+                <ul>
+                    <li><a href="#">Mis compras (10)</a></li>
+                    <li><a href="#">Carrito</a></li>
+                    <li><a href="#">Medios de pago</a></li>
+                </ul>
+                <hr>
+                <a href="/users/logout">
+                    <button class="exit-button"><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180" style="color: #ffffff;"></i>
+                        Salir
+                    </button>
+                </a>
+
+            </section>
+            <section class="user-info__rightColumn">
+                <div class="user-info__edition-1">
+                    <h2>Editar perfil</h2>
+                    <p class="breadcrumb">Edita tu información personal : <%= logueado.first_name %></p>
+                </div>
+                <div class="user-info__edition-2">
+                        <div class="photo-user">
+                            
+                            <form action="/users/user-profile/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data" id="form-user">
+                                <div >
+                                    <img src="/images/users/<%= user.avatar %>" alt="<%= user.avatar %>">
+                                    <input id="custom-file-input" type="file" name="avatar" accept="image/*">
+                                </div>
+                            <button type="submit">Actualizar Foto</button> 
+                            </form>
+                        </div>
+                        
+                    
+                    
+                    <section class="user-info__section-container">
+                            <form class="info-user__profile" action="/users/user-profile/<%= user.id %>?_method=PUT" method="POST" id="form-data">
+                                <div>
+                                    <label for="first_name">Nombre</label>
+                                    <input placeholder="Tu Nombre" type="text" id="first_name" name="first_name" class="style-box_register" value="<%= user.first_name %>">
+                                    <span class="errorstyle" id="first_nameError"></span>
+                                    <label for="last_name">Apellido</label>
+                                    <input placeholder="Tu Apellido" type="text" id="last_name" name="last_name" class="style-box_register" value="<%= user.last_name %>">
+                                    <span class="errorstyle" id="last_nameError"></span>
+                                    <label for="phone">Teléfono</label>
+                                    <input type="tel" name="phone" id="phone" class="style-box_register" placeholder="Tu Teléfono" value="<%= user.phone %>">
+                                    <span class="errorstyle" id="phoneError"></span>
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" class="style-box_register" placeholder="Tu Email" value="<%= user.email %>">
+                                    <span class="errorstyle" id="emailError"></span>
+                                    <button type="submit">Actualizar</button>
+                                </div>
+                            </form>
+                    </section>
+                </div>
+            </section>
+        </div>
+        </div>
+    </main>
+    <footer class="footer"><%- include("../partials/footer") %></footer>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<div class="header-logo">
+  <a href="/">
+    <img
+      class="header-logo__desktop"
+      src="/images/logo-desktop.png"
+      alt="logo-maunganui"
+      srcset=""
+    /><img
+      class="header-logo__mobile"
+      src="/images/logo-M.png"
+      alt="logo-maunganui"
+      srcset=""
+    />
+  </a>
+</div>
+<form class="header-form__container" action="/search" method="GET">
+  <input
+    type="text"
+    name="keywords"
+    placeholder="Buscá productos..."
+    class="style-input-navbar"
+  />
+  <button type="submit" class="header-search__button">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+</form>
+<nav class="header-container__navbar">
+
+  <ul class="header-container__nav-links">
+    <li>
+      <a href="/products"> <strong>Tienda</strong> </a>
+    </li>
+    <li><a href="#">Ofertas</a></li>
+    <li><a href="/sucursales">Sucursales</a></li>
+  </ul>
+  <div class="header-container-user__icons">
+    <div class="header-cart__icon">
+      <a href="/cart" id="cart-icon"
+        ><span><i class="fa-solid fa-cart-shopping"></i></span
+      ></a>
+      <!-- Cart shopping -->
+      <div class="cart-container"
+      id="cart-modal">
+      <!-- <span class="drawer-overlay">
+        
+      </span> -->
+          <div class="cart-header" id="close-modal">
+            <div class="img-log">
+              <a href="/"><img src="/images/logo-M.png" class="img-logo" alt="logo-M"></a>
+            </div>
+            <div>
+        </div>
+    </div>
+    </div>
+    <% if (locals.logueado) { %>
+    <div>
+      <% if (locals.logueado.user_type_id == 1) { %>
+      <a href="/users/admin-profile/<%= locals.logueado.id %>">
+        <% } else { %>
+        <a href="/users/user-profile/<%= locals.logueado.id %>">
+        <% } %>
+        <span>
+          <img
+            class="User-Icon"
+            src="/images/users/<%= locals.logueado.avatar %>"
+            alt="default.png"
+        /></span>
+<!--         Hi <%= locals.logueado.first_name %> -->
+      </a>
+    </div>
+    <% } else { %>
+    <div class="header-user__icon">
+      <a href="/users/login"
+        ><span><i class="fa-solid fa-user-astronaut"></i></span
+      ></a>
+    </div>
+    <div class="header-menu__icon">
+      <a href="/users/register" class="btn-abrir-popup" id="btn-abrir-popup"
+        ><span
+          ><i class="fa-solid fa-user-plus" style="color: #ffffff"></i></span
+      ></a>
+    </div>
+    <% } %>
+  </div>
+</nav>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include("../partials/head") %>
+        <title>Search Result</title>
+</head>
+
+<body>
+    <header class="header-container"><%- include("../partials/header") %></header>
+    <main class="main-container">
+        <div class="breadcrumb">
+            <a href="/">Perfil del Vendedor: </a> /
+            <span><%= logueado.first_name %></span>
+        </div>
+        <div class="user-info__container">
+            <section class="user-info__leftColumn">
+                <h2>Perfil Vendedor</h2>
+                <ul>
+                    <li><a href="/products/all-products-edit">Todo los Productos</a></li>
+                    <li><a href="/users">Todo los usuarios</a></li>
+                    <li><a href="/products/create">Crear productos</a></li>
+                    <li><a href="http://localhost:5173/Estadisticas">Dashboard</a></li>
+                </ul>
+                <hr>
+                <a href="/users/logout">
+                    <button class="exit-button"><i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180" style="color: #ffffff;"></i>
+                        Salir
+                    </button>
+                </a>
+            </section>
+            <section class="user-info__rightColumn">
+                <div class="user-info__edition-1">
+                    <h2>Editar perfil Vendedor</h2>
+                    <p class="breadcrumb">Edita tu información personal:</p>
+                </div>
+                <div class="user-info__edition-2">
+                        <div class="photo-user">
+           
+                            <form action="/users/admin-profile/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                                <div >
+                                    <img src="/images/users/<%= user.avatar %>" alt="<%= user.avatar %>">
+                                    <input id="custom-file-input"  type="file" name="avatar" accept="image/*">
+                                </div>
+                            <button type="submit">Actualizar Foto</button> 
+                            </form>
+                        </div>
+
+                    <section>
+                            <form class="info-user__profile" class="user-info__edition-3" action="/users/admin-profile/<%= user.id %>?_method=PUT" method="POST" id="form-data">
+                                <div>
+                                    <label for="first_name">Nombre</label>
+                                    <input placeholder="Tu Nombre" type="text" name="first_name" class="style-box_register"value="<%= user.first_name %>">
+                                </div>
+                                <div>
+                                    <label for="last_name">Apellido</label>
+                                    <input placeholder="Tu Apellido" type="text" name="last_name" class="style-box_register" value="<%= user.last_name %>">
+                                </div>
+                                <div class="user-info_">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" class="style-box_register" placeholder="Tu Email"value="<%= user.email %>">
+                                </div>
+                                <div class="user-info_">
+                                    <label for="phone">Teléfono</label>
+                                    <input type="tel" name="phone" class="style-box_register" placeholder="Tu Teléfono"value="<%= user.phone %>">
+                                </div>
+                                <div>
+                                    <button type="submit">Actualizar</button>
+                                </div>
+                            </form>
+                    </section>
+                </div>
+            </section>
+        </div>
+        </div>
+    </main>
+    <footer class="footer"><%- include("../partials/footer") %></footer>
+</body>
+
+</html>

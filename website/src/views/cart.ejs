@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <%- include("partials/head") %>
+    <title>Carrito de compras</title>
+  </head>
+
+  <!-- Cart Shopping -->
+  <div class="cart-container">
+    <span class="drawer-overlay"></span>
+    <div class="cart-header">
+      <div class="img-log">
+        <a href="/"
+          ><img src="/images/logo-M.png" class="img-logo" alt="logo-M"
+        /></a>
+      </div>
+      
+            </form>
+        </div>
+      </form>
+    </div>
+  <body>
+    <!-- Header and NavBar -->
+    <header class="header-container"><%- include("partials/header") %></header>
+    <!-- Main Content -->
+    <main class="container">
+      <strong class="cart-title">Carrito de compras</strong>
+      <!-- Incio carrito de Compras -->
+      <div class="content">
+        <% productsUser.forEach(product => { %> 
+          <div class="cart-box" id="cart-product-list">
+            <div class="detail-product">
+              
+              <strong><%= product.product_name %></strong>
+                  <img class="cart-img" src="/images/products/<%= product.image %>" class="img-product" alt="<%= product.product_name %>">
+                  <p>$<%= product.total %></p>
+                    <div class="cart-size">
+                      <label for="sizes-select">Talla :</label>
+                      <select name="tallas" class="sizes-select">
+              <option value=" %>">Elija</option>
+              <option value="x-large">XL</option>
+              <option value="large">L</option>
+              <option value="medium">M</option>
+              <option value="small">S</option>
+              <option value="x-small">XS</option>
+            </select>
+                      <!-- <div class="container-product__size-buttons">
+                        <button class="size-button"> </button>
+                      </div> -->
+                    </div>
+                    <div class="cart-color">
+                        <label for="color-select">Color :  </label>
+                        <select name="color" class="color-select">
+              <option value="">Elija</option>
+              <option value="amarilli">Amarrillo</option>
+              <option value="rojo">Rojo</option>
+              <option value="verde">Verde</option>
+              <option value="azul">Azul</option>
+              <option value="negro">Negro</option>
+            </select>
+                    </div>
+                    <div class="cart-product-quantity-group">
+                      <span>Cantidad : <%= product.quantity %></span>
+                      <!-- <span class="cart-product-quantity">
+                          <span class="minus">-</span>
+                          <span class="num">1</span>
+                          <span class="plus">+</span>
+                      </span> -->
+                      <button><i class="fa-solid fa-trash cart-remove" style="color: #66347F;"></i> Eliminar</button>
+                    </div>
+                  </div>
+                </div>
+                <% }) %>
+              </div>
+          <div class="cart-fast">
+            <form action="/cart" method="post">
+              <div class="cart-subtotal-container">
+                <span><strong> Subtotal :</strong></span>
+                <span class="cart-price" id="cart-subtotal">$ </span>
+                </div>
+                <% if(productsUser.length > 0) { %>
+                <div class="cart-note">
+                    <span><strong>Envío : </strong> </span>
+                    <span>Por calcular </span>
+                </div>
+                <div class="cart-total-container">
+                    <span><strong>Total :</strong> </span>
+                    <span class="cart-total" id="cart-total">$ <%= total %></span>
+                </div>
+                <% } else { %>
+                  <h2 class="mensaje-carrito-vacio">Empezá a agregar productos a tu carrito!</h2>
+                <div class="cart-buttons_container">
+                    <button type="submit" class="cart-checkout">Comprar Ahora</button>
+                    <button type="button" class="cart-follow"><a href="#" id="seguir-comprando-btn">Seguir Comprando</a></button>
+                </div>
+                <% } %>
+                  <!-- Final del Carrito de Compras-->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer"><%- include("partials/footer") %></footer>
+
+    <!-- <script src="/js/popup.js"></script> -->
+    <!-- <script src="/js/index.js"></script> -->
+  </body>
+</html>
